@@ -2,6 +2,7 @@
 import unittest
 from lambda_function import Calculator
 
+
 class Test_Calculator(unittest.TestCase):
 
     def setUp(self):
@@ -9,7 +10,7 @@ class Test_Calculator(unittest.TestCase):
 
     def test_calculator_class(self):
         self.assertIsInstance(self.calculator, Calculator)
-    
+
     def test_addition_function(self):
         result = self.calculator.addition(2, 3)
         expected = 5
@@ -29,6 +30,7 @@ class Test_Calculator(unittest.TestCase):
         result = self.calculator.multiply(10, 2)
         expected = 20
         self.assertEqual(result, expected)
+
 
 if __name__ == "__main__":
     unittest.main()
