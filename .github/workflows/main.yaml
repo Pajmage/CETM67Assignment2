@@ -22,10 +22,10 @@ jobs:
         python -m pip install --upgrade pip
         python -m pip install flake8 pytest
         if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
-        pip update twisted
-        pip update jinja2
-        pip update httplib2
-        pip update cryptography
+        pip install twisted --upgrade
+        pip install jinja2 --upgrade
+        pip install httplib2 --upgrade
+        pip install cryptography --upgrade
         
     - name: Lint with flake8
       run: |
