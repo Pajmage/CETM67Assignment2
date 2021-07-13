@@ -35,7 +35,7 @@ jobs:
     
     - name: Run Bandit to check for bad packages
       run: |
-        bandit lambd_function.py
+        bandit lambda_function.py
         
     - name: Run safety to check for anything untoward
       run: |
