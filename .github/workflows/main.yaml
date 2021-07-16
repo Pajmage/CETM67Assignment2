@@ -32,6 +32,12 @@ jobs:
         # stop the build if there are Python syntax errors or undefined names
         # exit-zero treats all errors as warnings. The GitHub editor is 127 chars wide
         flake8 . 
+  
+    - name: Lint with pylint
+      run: |
+        # stop the build if there are Python syntax errors or undefined names
+        # exit-zero treats all errors as warnings. The GitHub editor is 127 chars wide
+        pylint . 
     
     - name: Run Bandit to check for bad packages
       run: |
