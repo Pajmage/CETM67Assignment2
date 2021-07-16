@@ -22,19 +22,31 @@ jobs:
         python -m pip install --upgrade pip
         python -m pip install flake8 pytest
         if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
+        pip install twisted --upgrade
+        pip install jinja2 --upgrade
+        pip install httplib2 --upgrade
+        pip install cryptography --upgrade
         
     - name: Lint with flake8
       run: |
         # stop the build if there are Python syntax errors or undefined names
         # exit-zero treats all errors as warnings. The GitHub editor is 127 chars wide
         flake8 . 
+    
+    - name: Run Bandit to check for bad packages
+      run: |
+        bandit lambda_function.py
+        
+    - name: Run safety to check for anything untoward
+      run: |
+        safety check
         
     - name: Run Unit Tests
       run: |
         # Run the Unit Test file for the function
         python -m unittest "unit_tests.py"
     
-  Package-File:
+  Package-File-and-Push-to-S3:
   
     runs-on: ubuntu-latest
     
@@ -61,12 +73,6 @@ jobs:
       - name: List files in the directory to ensure it has been moved
         run:
           cd ./artifacts && ls
-          
-  Push-to-S3:
-    
-    runs-on: ubuntu-latest
-      
-    steps:
       
       - name: Push the Zip to S3 Bucket
         uses: jakejarvis/s3-sync-action@v0.3.1
