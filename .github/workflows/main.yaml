@@ -39,11 +39,11 @@ jobs:
         # exit-zero treats all errors as warnings. The GitHub editor is 127 chars wide
         pylint *.py
     
-    - name: Run Bandit to check for bad packages
+    - name: Run Bandit to check for issues around secure code
       run: |
         bandit lambda_function.py
         
-    - name: Run safety to check for anything untoward
+    - name: Run safety to check for bad packages
       run: |
         safety check
         
