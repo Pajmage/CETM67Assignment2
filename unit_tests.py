@@ -42,7 +42,7 @@ class TestRiver(unittest.TestCase):
         test function to check grade function
         '''
         result = self.river.river_grade(10)
-        expected = "Too Extreme"
+        expected = "Extreme"
         self.assertEqual(result, expected)
 
 
