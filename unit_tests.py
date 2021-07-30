@@ -1,4 +1,6 @@
 '''
+PJones - bh83dq
+20/07/2021
 Unit tests for the lambda function
 '''
 
@@ -40,7 +42,7 @@ class TestRiver(unittest.TestCase):
         test function to check grade function
         '''
         result = self.river.river_grade(10)
-        expected = "Extreme"
+        expected = "Too Extreme"
         self.assertEqual(result, expected)
 
 
