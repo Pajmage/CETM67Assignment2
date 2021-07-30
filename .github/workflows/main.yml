@@ -53,7 +53,7 @@ jobs:
         python -m unittest "unit_tests.py"
     
   Package-File-and-Push-to-S3:
-  
+    needs: build
     runs-on: ubuntu-latest
     
     steps:
