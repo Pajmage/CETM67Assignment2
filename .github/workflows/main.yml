@@ -9,7 +9,7 @@ on:
 
 jobs:
   
-  Code Analysis and Testing:
+  Code-Analysis-and-Testing:
 
     runs-on: ubuntu-latest
 
@@ -53,7 +53,7 @@ jobs:
         python -m unittest "unit_tests.py"
     
   Package-File-and-Push-to-S3:
-    needs: Code Analysis and Testing
+    needs: Code-Analysis-and-Testing
     runs-on: ubuntu-latest
     
     steps:
