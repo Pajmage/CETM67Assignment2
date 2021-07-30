@@ -1,5 +1,8 @@
+# PJones
+# bh83dq
+# 15/07/2021
 # This workflow will install Python dependencies, run tests and lint with a variety of Python versions
-# For more information see: https://help.github.com/actions/language-and-framework-guides/using-python-with-github-actions
+# It will then zip the labda function and push it to a pre-determined S3 bucket
 
 name: Python package
 
@@ -36,20 +39,21 @@ jobs:
     - name: Lint with pylint
       run: |
         # stop the build if there are Python syntax errors or undefined names
-        # exit-zero treats all errors as warnings. The GitHub editor is 127 chars wide
         pylint *.py
     
     - name: Run Bandit to check for issues around secure code
       run: |
+        # stop the build if there are any nonsecure code in the function (i.e. hardcoded access keys etc.)
         bandit lambda_function.py
         
     - name: Run safety to check for bad packages
       run: |
+        # stop the build if there are any bad or out of date python packages identified
         safety check
         
     - name: Run Unit Tests
       run: |
-        # Run the Unit Test file for the function
+        # Run the Unit Test file for the function, stopping the build if the unit tests fail
         python -m unittest "unit_tests.py"
     
   Package-File-and-Push-to-S3:
@@ -90,10 +94,4 @@ jobs:
           AWS_SECRET_ACCESS_KEY:  ${{ secrets.AWS_SECRET_KEY }}
       
       - name: Job Statistics and Results
-        run: echo "Job complete.  The status of the job is ${{ job.status }}"
-            
-      
-      
-  
-    
-    
+        run: echo "Job complete.  The status of the job is - ${{ job.status }}"
